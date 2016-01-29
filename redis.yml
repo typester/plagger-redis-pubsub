@@ -1,0 +1,26 @@
+---
+global:
+  plugin_path:
+    - ./plugins
+  timezone: Asia/Tokyo
+  log:
+    level: debug
+    encoding: utf-8
+  cache:
+    base: .
+
+plugins:
+  - module: Subscription::Redis
+    config:
+      host: redis
+
+  - module: Filter::TrimLink
+
+  - module: Filter::Rule
+    rule:
+      - module: Deduped
+        path: ./cache/dupe.db
+
+  - module: Notify::Redis
+    config:
+      host: redis
