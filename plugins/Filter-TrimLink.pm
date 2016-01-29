@@ -15,7 +15,7 @@ sub register {
 sub fixup {
     my($self, $context, $args) = @_;
 
-    $args->{entry}{link} =~ s/(^[\n\t ]+|[\n\t ]+$)//gs;
+    $args->{entry}{link} =~ s/(^\s+|\s+$)//gs;
 }
 
 1;
